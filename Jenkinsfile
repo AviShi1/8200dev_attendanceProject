@@ -9,7 +9,7 @@ pipeline {
 
     stage('Build') {
       steps {
-        sh 'sudo docker-compose build'
+        sh 'docker-compose build'
       }
     }
 
