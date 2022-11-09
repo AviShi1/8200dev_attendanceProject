@@ -9,7 +9,7 @@ scp -o StrictHostKeyChecking=no -r $proj_folder ubuntu@$machine:/home/ubuntu/
 ssh ubuntu@$machine "docker-compose -f /home/ubuntu/docker-compose-production.yml up -d"
 if [ $machine == "test" ]; then 
     echo 'run Curl test...'
-    Ans= ssh ubuntu@$machine "curl test"
+    Ans= ssh ubuntu@$machine "curl https://127.0.0.1:5000"
     if [ Ans > 0 ]; then echo "Request was Successful"
     else echo "failed connection"
     fi
