@@ -15,4 +15,4 @@ if [ $machine == "test" ]; then
     fi
     ssh ubuntu@$machine "docker-compose -f /home/ubuntu/docker-compose-production.yml down"
     echo 'test docker has stopped!'
-fi
+fi    
