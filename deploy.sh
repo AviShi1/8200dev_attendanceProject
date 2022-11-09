@@ -6,7 +6,7 @@ proj_folder="/var/lib/jenkins/workspace/FinalProj/docker-comepose-production.yml
 
 echo "creating dir and copy"
 scp -o StrictHostKeyChecking=no -r $proj_folder ubuntu@$machine:/home/ubuntu/
-ssh ubuntu@$machine "docker-compose -f /home/ubuntu/docker-compose-production.yaml up -d"
+ssh ubuntu@$machine "docker-compose -f /home/ubuntu/docker-compose-production.yml up -d"
 if[ $machine == "test" ];
 then 
     echo 'run Curl test...'
