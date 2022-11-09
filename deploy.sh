@@ -2,7 +2,7 @@
 
 machine=$1
 
-proj_folder="/var/lib/jenkins/workspace/FinalProj/docker-comepose-production.yml"
+proj_folder="/var/lib/jenkins/workspace/FinalProj/docker-compose-production.yml"
 
 echo "creating dir and copy"
 scp -o StrictHostKeyChecking=no -r $proj_folder ubuntu@$machine:/home/ubuntu/
