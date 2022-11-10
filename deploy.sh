@@ -8,7 +8,7 @@ echo "creating dir and copy"
 scp -o StrictHostKeyChecking=no -r $proj_folder ubuntu@$machine:/home/ubuntu/
 ssh ubuntu@$machine "docker login"
 ssh ubuntu@$machine "docker pull avishilon22/8200dev_final:latest"
-ssh ubuntu@$machine "docker-compose -f /home/ubuntu/docker-compose-production.yml up -p --no-build;sleep 100;docker container ls -a;"
+ssh ubuntu@$machine "docker-compose -f /home/ubuntu/docker-compose-production.yml up -d --no-build;sleep 100;docker container ls -a;"
 if [ $machine == "test" ]; then 
     echo 'run Curl test...'
     Ans= ssh ubuntu@$machine "curl -Is http://127.0.0.1:5000"
