@@ -16,7 +16,7 @@ def csv_connection():
         host='db',
         user='root',
         passwd='aviaot2020',
-        database='attenDev'
+        database='attendev'
     )
 
     if db.is_connected():
