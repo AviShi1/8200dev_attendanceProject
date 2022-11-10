@@ -19,4 +19,4 @@ if [ $machine == "test" ]; then
     echo 'test docker has stopped!'
 fi
 
-ssh ubuntu@$machine "docker-compose -f /home/ubuntu/docker-compose-production.yml down;sleep 70;docker system prune -f;"
+#ssh ubuntu@$machine "docker-compose -f /home/ubuntu/docker-compose-production.yml down;sleep 70;docker system prune -f;"
