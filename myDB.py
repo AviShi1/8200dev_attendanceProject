@@ -13,7 +13,7 @@ def csv_connection():
     new_df = pd.DataFrame()
 
     db = mysql.connector.connect(
-        host='db',
+        host='localhost',
         user='root',
         passwd='aviaot2020',
         database='attenDev'
