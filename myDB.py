@@ -13,10 +13,10 @@ def csv_connection():
     new_df = pd.DataFrame()
 
     db = mysql.connector.connect(
-        host=os.environ['HOST_SQL'],
-        user=os.environ['USERNAME_SQL'],
-        passwd=os.environ['PASSWORD_SQL'],
-        database=os.environ['DATABASE_SQL']
+        host='db',
+        user='root',
+        passwd='aviaot2020',
+        database=os.'attenDev'
     )
 
     if db.is_connected():
