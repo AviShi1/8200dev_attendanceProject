@@ -9,8 +9,7 @@ pipeline {
     stages {
         stage('Git') {
             steps {
-                git branch: 'main', 
-                url: 'https://github.com/AviShi1/8200dev_attendanceProject'
+                git branch: 'main', url: 'https://github.com/avishilon26/8200dev_attendanceProject.git'
             }
         }
         stage('Login to Docker Hub') {      	
@@ -22,19 +21,34 @@ pipeline {
         }
         stage('Build Images'){
             steps{
-                DockerImage=docker.build(dockerHubRegistry + ":latest",
-                    "-f ./Dockerfile .")
+                script{
+                    DockerImage=docker.build(dockerHubRegistry + ":latest", "-f ./Dockerfile .")
+                }
             }
+            
         }
         stage('Push To DockerHub'){
             steps{
-                script{
-                    docker.withRegistry( '', DOCKERHUB_CREDENTIALS) {
-                        DockerImage.push()
-                    }
+                sh 'docker push avishilon22/8200dev_final:latest'
+                sh 'docker system prune --all'
+                echo 'y'
+            }
+        }
+        stage('Test'){
+            steps{
+                sshagent(credentials: ['ubuntu']){
+                    sh 'bash -x deploy.sh test'
                 }
             }
         }
+        stage('Production'){
+            steps{
+                sshagent(credentials: ['ubuntu2']){
+                    sh 'bash -x deploy.sh prod'
+                }
+            }
+        }
+        
         stage('clean up'){
             steps{
                 cleanWs()
