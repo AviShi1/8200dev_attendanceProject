@@ -15,7 +15,7 @@ if [ $machine == "test" ]; then
     if [ Ans > 0 ]; then echo "Request was Successful"
     else echo "failed connection"
     fi
-    ssh ubuntu@$machine "docker-compose -f /home/ubuntu/docker-compose-production.yml down"
+    ssh ubuntu@$machine "docker-compose -f /home/ubuntu/docker-compose-production.yml down;docker rmi $(docker images -q)"
     echo 'test docker has stopped!'
 fi
 
