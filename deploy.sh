@@ -8,14 +8,14 @@ echo "creating dir and copy"
 scp -o StrictHostKeyChecking=no -r $proj_folder ubuntu@$machine:/home/ubuntu/
 ssh ubuntu@$machine "docker login"
 ssh ubuntu@$machine "docker pull avishilon22/8200dev_final:latest"
-ssh ubuntu@$machine "docker-compose -f /home/ubuntu/docker-compose-production.yml up -d --no-build;sleep 10;docker container ls -a;"
+ssh ubuntu@$machine "docker-compose -f /home/ubuntu/docker-compose-production.yml up -d --no-build;sleep 10;docker container ls -a;docker rmi $(docker images -a -q);"
 if [ $machine == "test" ]; then 
     echo 'run Curl test...'
     Ans= ssh ubuntu@$machine "curl -Is http://127.0.0.1:5000"
     if [ Ans > 0 ]; then echo "Request was Successful"
     else echo "failed connection"
     fi
-    ssh ubuntu@$machine "docker-compose -f /home/ubuntu/docker-compose-production.yml down"
+    ssh ubuntu@$machine "docker-compose -f /home/ubuntu/docker-compose-production.yml down;docker rmi $(docker images -a -q);"
     echo 'test docker has stopped!'
 fi
 
