@@ -10,7 +10,7 @@ ssh ubuntu@$machine "docker pull avishilon22/8200dev_final:latest"
 ssh ubuntu@$machine "docker-compose -f /home/ubuntu/docker-compose-production.yml up -d --no-build;sleep 10;docker container ls -a;"
 if [ $machine == "test" ]; then 
     echo 'run Curl test...'
-    Ans= ssh ubuntu@$machine `curl -s -I localhost:5000 | grep HTTP | awk {'print $2'}`
+    Ans=ssh -t ubuntu@$machine `curl -s -I localhost:5000 | grep HTTP | awk {'print $2'}`
     if [[ $Ans -eq 200 ]]; then echo "Request was Successful"
     else echo "failed connection"
     fi
