@@ -49,11 +49,11 @@ pipeline {
             }
         }
         
-        stage('clean up'){
-            steps{
-                cleanWs()
-            }
+    }
+        post { 
+        always { 
+            cleanWs()
         }
-        
     }
 }
+
